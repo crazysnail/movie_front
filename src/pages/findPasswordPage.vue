@@ -44,13 +44,13 @@ export default {
       username: '',
       repassword: '',
       showRePassword: false,
-      showUserInfo: true,
+      showUserInfo: true
     }
   },
   methods: {
     checkUser: function (event) {
       this.$http.post('http://localhost:3000/users/findPassword', { username: this.username, userMail: this.userMail, userPhone: this.userPhone }).then((data) => {
-        if (data.body.status == 1) {
+        if (data.body.status === 1) {
           alert(data.body.message)
         } else {
           alert(data.body.message)
@@ -62,14 +62,14 @@ export default {
     },
     changeUserPassword: function (event) {
       this.$http.post('http://localhost:3000/users/findPassword', { username: this.username, userMail: this.userMail, userPhone: this.userPhone, repassword: this.repassword }).then((data) => {
-        if (data.body.status == 1) {
+        if (data.body.status === 1) {
           alert(data.body.message)
         } else {
           alert(data.body.message)
           this.$router.go(-1)
         }
       })
-    },
+    }
   }
 
 }

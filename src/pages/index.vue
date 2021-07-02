@@ -54,9 +54,9 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      headerItems:[],
-      newsItems:[],
-      movieItems:[]
+      headerItems: [],
+      newsItems: [],
+      movieItems: []
     }
   },
   components: {
@@ -68,55 +68,55 @@ export default {
     UserMessage
   },
 
-//  这里用于获取数据，需要获得主页推荐，主页新闻列表，主页电影列表
+  //  这里用于获取数据，需要获得主页推荐，主页新闻列表，主页电影列表
   created () {
-//主页推荐
+    //  主页推荐
     this.$http.get('http://localhost:3000/showIndex').then((data) => {
-      this.headerItems = data.body.data;
-      console.log( data.body.data)
+      this.headerItems = data.body.data
+      console.log(data.body.data)
     })
-//    获取新闻
+    //    获取新闻
     this.$http.get('http://localhost:3000/showArticle').then((data) => {
-      this.newsItems = data.body.data;
+      this.newsItems = data.body.data
       console.log(data.body)
     })
-//    获取所有电影
+    //    获取所有电影
     this.$http.get('http://localhost:3000/showRanking').then((data) => {
-      this.movieItems = data.body.data;
-      console.log( data.body)
+      this.movieItems = data.body.data
+      console.log(data.body)
     })
   },
-  ready(){
+  ready () {
 
   }
 }
 </script>
 
 <style lang="css" scoped>
-  .container {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .contentMain{
-    padding-top: 15px;
-  }
-  .userMessage{
-    margin-top:0px;
-    margin-left: 0px;
-  }
-  .contentPic{
-    padding-top:5px;
-  }
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+.contentMain {
+  padding-top: 15px;
+}
+.userMessage {
+  margin-top: 0px;
+  margin-left: 0px;
+}
+.contentPic {
+  padding-top: 5px;
+}
 
-  .cont-ul {
-    padding-top: 0.5rem;
-    background-color: #fff;
-  }
-  .cont-ul::after {
-    content: '';
-    display: block;
-    clear: both;
-    width: 0;
-    height: 0;
-  }
+.cont-ul {
+  padding-top: 0.5rem;
+  background-color: #fff;
+}
+.cont-ul::after {
+  content: "";
+  display: block;
+  clear: both;
+  width: 0;
+  height: 0;
+}
 </style>

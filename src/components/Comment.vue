@@ -21,42 +21,42 @@
 <script>
 
 export default {
-  props:['movie_id'],
+  props: ['movie_id'],
   data () {
     return {
-      items:[],
-      context:'',
+      items: [],
+      context: ''
     }
   },
-  created(){
-//    获得所有的评论
-//    console.log(this.movie_id)
-    this.$http.post('http://localhost:3000/movie/comment',{id:this.movie_id}).then((data) => {
-      if(data.body.status==0){
-        this.items=data.body.data
-      }else{
-        alert("获得失败")
+  created () {
+    //    获得所有的评论
+    //    console.log(this.movie_id)
+    this.$http.post('http://localhost:3000/movie/comment', { id: this.movie_id }).then((data) => {
+      if (data.body.status === 0) {
+        this.items = data.body.data
+      } else {
+        alert('获得失败')
       }
     })
   },
-  methods:{
-    send_comment(event){
-      let send_data;
-        if(typeof(localStorage.username)!="undefined"){
-        send_data={
-          movie_id:this.movie_id,
-          context:this.context,
-          username:localStorage.username
+  methods: {
+    send_comment (event) {
+      let sendData
+      if (typeof (localStorage.username) !== 'undefined') {
+        sendData = {
+          movie_id: this.movie_id,
+          context: this.context,
+          username: localStorage.username
         }
-      }else{
-        send_data={
-          movie_id:this.movie_id,
-          context:this.context,
+      } else {
+        sendData = {
+          movie_id: this.movie_id,
+          context: this.context
         }
       }
 
-      this.$http.post('http://localhost:3000/users/postCommment',send_data).then((data) => {
-          alert(data.body.message)
+      this.$http.post('http://localhost:3000/users/postCommment', sendData).then((data) => {
+        alert(data.body.message)
       })
     }
   }
